@@ -12,7 +12,7 @@ resource "null_resource" "update_deployment_file" {
   }
   
   provisioner "local-exec" {
-    command = "./update_argocd.sh"  
+    command = "bash /home/runner/work/Terraform-Docker-Image/Terraform-Docker-Image/update_argocd.sh"  
     working_dir = "/home/runner/work/Terraform-Docker-Image/Terraform-Docker-Image"
   }
 }
