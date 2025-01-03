@@ -11,7 +11,3 @@ module "deployment" {
   source = "./modules/deployment"
   image_uri = module.ecr.image_uri
 }
-
-
-
-
