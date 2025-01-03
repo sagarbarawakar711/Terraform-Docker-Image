@@ -1,19 +1,13 @@
-resource "null_resource" "make_script_executable" {
-  provisioner "local-exec" {
-    command = "chmod +x build_docker_image.sh" 
-    working_dir = "/mnt/d/Terraform-Docker"  
-  }
-}
-resource "null_resource" "build_docker_image" {
-  depends_on = [null_resource.make_script_executable]  
- triggers = {
-    always_run = "${timestamp()}"
-  }
-  provisioner "local-exec" {
-    command = "./build_docker_image.sh"  
-    working_dir = "/mnt/d/Terraform-Docker" 
-  }
+module "ecr" {
+  source = "./modules/ecr"
 }
 
+module "docker" {
+  source = "./modules/docker"
+  ecr_repository_url = module.ecr.repository_url
+}
 
-
+module "deployment" {
+  source = "./modules/deployment"
+  image_uri = module.ecr.image_uri
+}
