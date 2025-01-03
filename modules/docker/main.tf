@@ -1,6 +1,6 @@
 resource "null_resource" "make_script_executable" {
   provisioner "local-exec" {
-    command = "chmod +x build_docker_image.sh" 
+    command = "chmod +x /home/runner/work/Terraform-Docker-Image/Terraform-Docker-Image/build_docker_image.sh" 
     working_dir = "/home/runner/work/Terraform-Docker-Image/Terraform-Docker-Image"  
   }
 }
